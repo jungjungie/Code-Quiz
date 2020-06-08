@@ -17,7 +17,6 @@ var questionArr = [
     }
 ]
 
-// console.log(questionArr[0].q1);
 // Function to loop through Q&A array
 function runQuiz() {
 
@@ -38,17 +37,29 @@ function runQuiz() {
 
     for (var i=0; i < questionArr.length; i++) {
         document.querySelector("#changingTxt").textContent = questionArr[i].q;
+        
+        document.querySelector("#choiceA").textContent = questionArr[i].choices[0];
+        document.querySelector("#choiceB").textContent = questionArr[i].choices[1];
+        document.querySelector("#choiceC").textContent = questionArr[i].choices[2];
+        document.querySelector("#choiceD").textContent = questionArr[i].choices[3];
         console.log(questionArr[i].q)
-    }
-     
-    // create for loop to run through the Q&A array
-    // create for loop that will add each choice to each li
-    
-    // document.querySelector("li").textContent =
-    // create if statement to determine correct & incorrect answers
+
+        // create for loop that will add each choice to each li
+
+           // create if statement to determine correct & incorrect answers
             // if incorrect, timer deducts 5 seconds & goes to next q&a
             // if correct, no impact to timer & go to next q&a
     // when a multiple choice is clicked, replace the p and ol/li with next Q&A choices
+
+
+
+    }
+     
+    // create for loop to run through the Q&A array
+    
+    
+    // document.querySelector("li").textContent =
+ 
 
 
     var currentTime = 75;
