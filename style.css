@@ -5,6 +5,19 @@
 
 body {
     background: #5b3b8c;
+    padding: 10px;
+}
+
+nav {
+    background: white;
+    display: flex;
+    justify-content: space-between;
+    padding: 10px; 
+}
+
+a {
+    color: #5b3b8c;
+   text-decoration: none;
 }
 
 .wrapper {
@@ -12,6 +25,6 @@ body {
     width: 600px;
     height: 400px;
     margin: 0 auto;
-    margin-top: 150px;
+    margin-top: 120px;
     border-radius: 5px;
 }
