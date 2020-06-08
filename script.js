@@ -28,21 +28,26 @@ function runQuiz() {
     // Shows ol & li for multiple choice
     document.querySelector("#multipleChoice").style.display = "block";
     
-    // #changingTxt displays question
-    // if(questionIndex < questionArr.length) {
-    //     questionIndex = questionIndex + 1;
-    //     document.querySelector("#changingTxt").textContent = questionArr[questionIndex].q;
-    //     console.log(questionArr[questionIndex].q)
-    // }
+    // #changingTxt displays question & choices
+    if(questionIndex < questionArr.length) {
+        questionIndex = questionIndex + 1;
+        document.querySelector("#changingTxt").textContent = questionArr[questionIndex].q;
+        console.log(questionArr[questionIndex].q);
 
-    for (var i=0; i < questionArr.length; i++) {
-        document.querySelector("#changingTxt").textContent = questionArr[i].q;
+        document.querySelector("#choiceA").textContent = questionArr[questionIndex].choices[0];
+        document.querySelector("#choiceB").textContent = questionArr[questionIndex].choices[1];
+        document.querySelector("#choiceC").textContent = questionArr[questionIndex].choices[2];
+        document.querySelector("#choiceD").textContent = questionArr[questionIndex].choices[3];
+    }
+
+    // for (var i=0; i < questionArr.length; i++) {
+    //     document.querySelector("#changingTxt").textContent = questionArr[i].q;
         
-        document.querySelector("#choiceA").textContent = questionArr[i].choices[0];
-        document.querySelector("#choiceB").textContent = questionArr[i].choices[1];
-        document.querySelector("#choiceC").textContent = questionArr[i].choices[2];
-        document.querySelector("#choiceD").textContent = questionArr[i].choices[3];
-        console.log(questionArr[i].q)
+    //     document.querySelector("#choiceA").textContent = questionArr[i].choices[0];
+    //     document.querySelector("#choiceB").textContent = questionArr[i].choices[1];
+    //     document.querySelector("#choiceC").textContent = questionArr[i].choices[2];
+    //     document.querySelector("#choiceD").textContent = questionArr[i].choices[3];
+    //     console.log(questionArr[i].q)
 
         // create for loop that will add each choice to each li
 
@@ -53,7 +58,7 @@ function runQuiz() {
 
 
 
-    }
+    // }
      
     // create for loop to run through the Q&A array
     
