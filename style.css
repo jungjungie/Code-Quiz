@@ -1,0 +1,17 @@
+* {
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    background: #5b3b8c;
+}
+
+.wrapper {
+    background: white;
+    width: 600px;
+    height: 400px;
+    margin: 0 auto;
+    margin-top: 150px;
+    border-radius: 5px;
+}
