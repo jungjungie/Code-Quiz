@@ -36,6 +36,11 @@ a {
     justify-content: space-evenly;
 }
 
+#multipleChoice {
+    display: none;
+    margin: 0 auto;
+}
+
 #startBtn {
     background: #5b3b8c;
     color: white;
