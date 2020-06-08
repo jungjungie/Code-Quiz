@@ -41,9 +41,10 @@ function runQuiz() {
         console.log(questionArr[i].q)
     }
      
-    // add ol with li to display multiple choices
     // create for loop to run through the Q&A array
     // create for loop that will add each choice to each li
+    
+    // document.querySelector("li").textContent =
     // create if statement to determine correct & incorrect answers
             // if incorrect, timer deducts 5 seconds & goes to next q&a
             // if correct, no impact to timer & go to next q&a
@@ -62,6 +63,15 @@ function runQuiz() {
 
 }
 
+// Hides Start button when quiz starts
+function hideBtn() {
+    if (startBtn.style.display === "block") {
+      startBtn.style.display = "none";
+    }  
+    else {
+      startBtn.style.display = "none";
+    }
+}
 
 
 
