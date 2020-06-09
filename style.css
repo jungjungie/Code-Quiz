@@ -35,6 +35,14 @@ a {
     justify-content: space-evenly;
 }
 
+#correctOrWrong {
+    display: none;
+    text-align: center;
+    color: white;
+    font-size: 3em;
+    margin-top: 20px;
+}
+
 #multipleChoice {
     display: none;
     margin: 0 auto;

@@ -10,6 +10,7 @@ var currentTime = 75;
 var questionIndex = -1;
 var score = 0;
 var mcBtnArr = document.querySelectorAll(".mcBtns");
+var result = document.querySelector("#correctOrWrong");
 
 // Array of Q&A
 var questionArr = [
@@ -29,8 +30,6 @@ var questionArr = [
         answer: "The current object"
     }
 ]
-
-console.log(questionArr[0].answer);
 
 // Function to start quiz
 function runQuiz() {
@@ -74,15 +73,24 @@ function checkAnswer(event) {
     // If answer is correct, add to score & go to next Q&A
     if (event.target.textContent == questionArr[questionIndex].answer) {
         score++;
-        console.log("Score is " + score)
         document.querySelector("#score").textContent = score; 
 
+        result.textContent = "Great job! That's correct!";
+       
         populateQ();
     // If incorrect, timer deducts 10 seconds & goes to next Q&A
     } else {
         currentTime -= 10;
+
+        result.textContent = "Nope. Better luck next time!";
+
         populateQ();
     }
+
+    result.style.display = "block";
+    setTimeout(function() {
+        result.style.display = "none";
+     }, 1500);
 }
 
 // Hides Start button when quiz starts
