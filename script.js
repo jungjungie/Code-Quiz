@@ -1,5 +1,9 @@
-// Start Quiz Button
+// Button Variables
 var startBtn = document.querySelector("#startBtn");
+var btnA = document.querySelector("#choiceA");
+var btnB = document.querySelector("#choiceB");
+var btnC = document.querySelector("#choiceC");
+var btnD = document.querySelector("#choiceD");
 
 // Variables
 var currentTime = 75;
@@ -30,7 +34,7 @@ var questionArr = [
 // Function to start quiz
 function runQuiz() {
 
-    // When start button is clicked, timer starts to countdown
+    // Timer starts to countdown
     var timer = setInterval(function() {
         if (currentTime > 0) {
             currentTime--; 
@@ -52,25 +56,33 @@ function runQuiz() {
 function populateQ() {
     if (currentTime > 0 && questionIndex < questionArr.length) {
         questionIndex++;
-        console.log(questionIndex);
     
         // Populates question
         document.querySelector("#changingTxt").textContent = questionArr[questionIndex].q;
             
-        // Populates multiple choice
+        // Populates multiple choice & assigns values
         for (var i=0; i < mcBtnArr.length; i++) {
-            mcBtnArr[i].textContent = questionArr[questionIndex].choices[i]
-        }
-    }
-
-    // Runs function to check answer 
-    checkAnswer();
+            mcBtnArr[i].textContent = questionArr[questionIndex].choices[i];
+            mcBtnArr[i].setAttribute = ("value", questionArr[questionIndex].choices[i])
+        } 
+    } 
+    // else go to the high scores page & show final score with list of high scores
 }
 
 // Function to check answer & determine next steps
-function checkAnswer() {
+function checkAnswer(event) {
     // if incorrect, timer deducts 5 seconds & goes to next q&a
     // if correct, no impact to timer, add score, & go to next q&a
+    if (event.value == questionArr[questionIndex].answer) {
+        score++;
+        console.log("Score is " + score)
+        document.querySelector("#score").textContent = score; 
+
+        populateQ();
+    } else {
+        currentTime -= 5;
+        populateQ();
+    }
 }
 
 // Hides Start button when quiz starts
@@ -89,3 +101,8 @@ function hideBtn() {
 
 // Quiz starts to run when Start Quiz Button is clicked
 startBtn.addEventListener("click",runQuiz)
+
+// Adding event to multiple choice buttons
+for (var i=0; i < mcBtnArr.length; i++) {
+    mcBtnArr[i].addEventListener("click",checkAnswer)
+}
