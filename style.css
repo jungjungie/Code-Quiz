@@ -7,7 +7,6 @@
 body {
     background: #5b3b8c;
     font-family: 'Roboto', sans-serif;
-    
 }
 
 nav {
@@ -53,6 +52,7 @@ a {
     margin-bottom: 5px;
     border-radius: 5px;
     border: none;
+    font-size: 16px;
 }
 
 #startBtn {
@@ -63,6 +63,7 @@ a {
     margin: 0 auto;
     border-radius: 5px;
     border: none;
+    font-size: 16px;
 }
 
 footer {
