@@ -10,7 +10,6 @@ var currentTime = 75;
 var questionIndex = -1;
 var score = 0;
 var mcBtnArr = document.querySelectorAll(".mcBtns");
-console.log(mcBtnArr);
 
 // Array of Q&A
 var questionArr = [
@@ -30,6 +29,8 @@ var questionArr = [
         answer: "The current object"
     }
 ]
+
+console.log(questionArr[0].answer);
 
 // Function to start quiz
 function runQuiz() {
@@ -63,7 +64,6 @@ function populateQ() {
         // Populates multiple choice & assigns values
         for (var i=0; i < mcBtnArr.length; i++) {
             mcBtnArr[i].textContent = questionArr[questionIndex].choices[i];
-            mcBtnArr[i].setAttribute = ("value", questionArr[questionIndex].choices[i])
         } 
     } 
     // else go to the high scores page & show final score with list of high scores
@@ -71,16 +71,16 @@ function populateQ() {
 
 // Function to check answer & determine next steps
 function checkAnswer(event) {
-    // if incorrect, timer deducts 5 seconds & goes to next q&a
-    // if correct, no impact to timer, add score, & go to next q&a
-    if (event.value == questionArr[questionIndex].answer) {
+    // If answer is correct, add to score & go to next Q&A
+    if (event.target.textContent == questionArr[questionIndex].answer) {
         score++;
         console.log("Score is " + score)
         document.querySelector("#score").textContent = score; 
 
         populateQ();
+    // If incorrect, timer deducts 10 seconds & goes to next Q&A
     } else {
-        currentTime -= 5;
+        currentTime -= 10;
         populateQ();
     }
 }
@@ -95,10 +95,6 @@ function hideBtn() {
     }
 }
 
-
-
-
-
 // Quiz starts to run when Start Quiz Button is clicked
 startBtn.addEventListener("click",runQuiz)
 
@@ -106,3 +102,13 @@ startBtn.addEventListener("click",runQuiz)
 for (var i=0; i < mcBtnArr.length; i++) {
     mcBtnArr[i].addEventListener("click",checkAnswer)
 }
+
+
+
+
+
+
+// Need to add text popup for "Correct!" and "Try Again!"
+// Add more to Q&A queue
+// Create high score page & link to it when time is up or when all Qs answered
+// When game is over, allow user to save initials and score
