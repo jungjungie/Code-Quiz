@@ -132,6 +132,11 @@ function checkAnswer(event) {
     setTimeout(function() {
         result.style.display = "none";
      }, 1500);
+
+    btnA = null;
+    btnB = null;
+    btnC = null;
+    btnD = null;
 }
 
 // Hides Start button when quiz starts
