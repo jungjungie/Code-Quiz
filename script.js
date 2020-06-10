@@ -4,6 +4,7 @@ var btnA = document.querySelector("#choiceA");
 var btnB = document.querySelector("#choiceB");
 var btnC = document.querySelector("#choiceC");
 var btnD = document.querySelector("#choiceD");
+var submitBtn = document.querySelector("#submitBtn");
 
 // Variables
 var currentTime = 75;
@@ -14,9 +15,13 @@ var result = document.querySelector("#correctOrWrong");
 var timer = null;
 var multipleChoice = document.querySelector("#multipleChoice");
 var changingTxt = document.querySelector("#changingTxt");
+
+// Form Variables
 var form = document.querySelector("#form");
 var wrapper = document.querySelector(".wrapper");
 var finalScore = document.querySelector("#finalScore");
+var username = document.querySelector("#username");
+
 
 // Array of Q&A
 var questionArr = [
@@ -85,7 +90,6 @@ function populateQ() {
             mcBtnArr[i].textContent = questionArr[questionIndex].choices[i];
         } 
     } 
-    // else go to the high scores page & show final score with list of high scores
 }
 
 // Function to check answer & determine next steps
@@ -140,6 +144,15 @@ function hideBtn() {
     }
 }
 
+// Function to save player's name & score to localStorage
+function saveScore(event) {
+    event.preventDefault();
+
+    var nameSubmitted = username.value;
+
+    localStorage.setItem("Username", nameSubmitted);
+}
+
 // Quiz starts to run when Start Quiz Button is clicked
 startBtn.addEventListener("click",runTimer)
 
@@ -148,6 +161,8 @@ for (var i=0; i < mcBtnArr.length; i++) {
     mcBtnArr[i].addEventListener("click",checkAnswer)
 }
 
+// Save username & score when submit button clicked
+submitBtn.addEventListener("click",saveScore)
 
 
 
