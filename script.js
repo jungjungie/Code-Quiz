@@ -12,6 +12,11 @@ var score = 0;
 var mcBtnArr = document.querySelectorAll(".mcBtns");
 var result = document.querySelector("#correctOrWrong");
 var timer = null;
+var multipleChoice = document.querySelector("#multipleChoice");
+var changingTxt = document.querySelector("#changingTxt");
+var form = document.querySelector("#form");
+var wrapper = document.querySelector(".wrapper");
+var finalScore = document.querySelector("#finalScore");
 
 // Array of Q&A
 var questionArr = [
@@ -61,7 +66,7 @@ function runTimer() {
     document.querySelector("h1").style.display = "none";
 
     // Shows ol & li for multiple choice
-    document.querySelector("#multipleChoice").style.display = "block";
+    multipleChoice.style.display = "block";
     
     // Runs function to populate question
     populateQ();
@@ -73,7 +78,7 @@ function populateQ() {
         questionIndex++;
     
         // Populates question
-        document.querySelector("#changingTxt").textContent = questionArr[questionIndex].q;
+        changingTxt.textContent = questionArr[questionIndex].q;
             
         // Populates multiple choice & assigns values
         for (var i=0; i < mcBtnArr.length; i++) {
@@ -105,6 +110,16 @@ function checkAnswer(event) {
     // Timer stops if it reaches 0 or if no more questions left
     if (currentTime < 0 || questionIndex == questionArr.length - 1) {
         clearInterval(timer);
+
+        changingTxt.style.display = "none";
+        multipleChoice.style.display = "none";
+        wrapper.style.display = "none";
+
+        setTimeout(function() {
+            wrapper.style.display = "block";
+            form.style.display = "block";
+            finalScore.textContent = score;
+         }, 1500);
     }
 
     // Shows commentary

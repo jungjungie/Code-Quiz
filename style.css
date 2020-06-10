@@ -39,6 +39,10 @@ a {
     display: none;
 }
 
+form {
+    padding-top: 100px;
+}
+
 #form h2, #finalScore {
     margin-bottom: 20px;
 }
