@@ -56,7 +56,6 @@ function runTimer() {
             document.querySelector("#countdown").textContent = currentTime;
         }, 1000);
     }
-    // add else statement to clearInterval(timer)
 
     // h1 disappears
     document.querySelector("h1").style.display = "none";
@@ -101,6 +100,11 @@ function checkAnswer(event) {
         result.textContent = "Nope. Better luck next time!";
 
         populateQ();
+    }
+
+    // Timer stops if it reaches 0 or if no more questions left
+    if (currentTime < 0 || questionIndex == questionArr.length - 1) {
+        clearInterval(timer);
     }
 
     // Shows commentary
