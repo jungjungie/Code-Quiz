@@ -84,7 +84,7 @@ form {
     text-align: left;
 }
 
-.mcBtns {
+.mcBtns, .btns {
     background: #5b3b8c;
     color: white;
     max-width: 500px;
