@@ -156,6 +156,7 @@ function saveScore(event) {
     var nameSubmitted = username.value;
 
     localStorage.setItem("Username", nameSubmitted);
+    localStorage.setItem("Score", score);
 }
 
 // Quiz starts to run when Start Quiz Button is clicked
@@ -174,5 +175,4 @@ submitBtn.addEventListener("click",saveScore)
 
 
 // Add more to Q&A queue
-// Create high score page & link to it when time is up or when all Qs answered
 // When game is over, allow user to save initials and score

@@ -15,7 +15,7 @@
     <header>
         <!-- Navbar: Link to High Scores & Timer -->
         <nav>
-            <a href="#">View High Scores</a>
+            <a href="highscores.html">View High Scores</a>
             <p>Current Score: <span id="score">0</span></p>
             <p>Time Remaining:  <span id="countdown">75</span></p>
         </nav>
@@ -42,7 +42,7 @@
                     Enter name:
                 </label>
                 <input id="username" type="text">
-                <button id="submitBtn">Submit</button>
+                <button id="submitBtn" onclick="location.href = 'highscores.html'">Submit</button>
             </form>
 
             <button id="startBtn" onclick="hideBtn()">Start Quiz</button>
