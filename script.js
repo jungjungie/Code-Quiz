@@ -91,8 +91,6 @@ function populateQ() {
         for (var i=0; i < mcBtnArr.length; i++) {
             mcBtnArr[i].textContent = questionArr[questionIndex].choices[i];
         } 
-
-        questionIndex++;
     } 
 }
 
@@ -106,16 +104,15 @@ function checkAnswer(event) {
         document.querySelector("#score").textContent = score; 
 
         result.textContent = "Great job! That's correct!";
-       
-        populateQ();
     // If incorrect, timer deducts 10 seconds & goes to next Q&A
     } else {
         currentTime -= 10;
 
         result.textContent = "Nope. Better luck next time!";
-
-        populateQ();
     }
+
+    questionIndex++;
+    populateQ();
 
     timeOut();
 
@@ -191,8 +188,6 @@ function returnHome () {
     score = 0;
     document.querySelector("#countdown").textContent = currentTime;
     document.querySelector("#score").textContent = score; 
-
-    
 }
 
 // Timer stops if it reaches 0 or if no more questions left

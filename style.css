@@ -99,7 +99,7 @@ form {
     font-weight: 500;
 }
 #username {
-    line-height: 1.8em;
+    line-height: 2em;
     padding-left: 5px;
 }
 #username:focus {
@@ -145,9 +145,12 @@ footer {
 
 /* For mobile */
 @media (max-width: 450px) {
-    .wrapper1 {
+    #wrapper1, #wrapper2, #wrapper3, #wrapper4 {
         width: 90vw;
-        align-content: center;
         margin-top: 20px;
     } 
+
+    nav {
+        text-align: center;
+    }
 }
