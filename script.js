@@ -98,6 +98,8 @@ function populateQ() {
 
 // Function to check answer & determine next steps
 function checkAnswer(event) {
+
+    console.log(event);
     // If answer is correct, add to score & go to next Q&A
     if (event.target.textContent == questionArr[questionIndex].answer) {
         score += 10;
@@ -117,9 +119,8 @@ function checkAnswer(event) {
 
     timeOut();
 
-    // Shows commentary
+    // Show commentary (right vs. wrong) for 1.5 seconds
     result.style.display = "block";
-    // Hides commentary after 1.5 seconds
     setTimeout(function() {
         result.style.display = "none";
      }, 1500);
@@ -211,9 +212,14 @@ timeOut();
 startBtn.addEventListener("click",runTimer);
 
 // Adding event to multiple choice buttons
-for (var i=0; i < mcBtnArr.length; i++) {
-    mcBtnArr[i].addEventListener("click",checkAnswer);
-}
+// for (var i=0; i < mcBtnArr.length; i++) {
+//     mcBtnArr[i].addEventListener("click",checkAnswer);
+// }
+btnA.addEventListener("click",checkAnswer);
+btnB.addEventListener("click",checkAnswer);
+btnC.addEventListener("click",checkAnswer);
+btnD.addEventListener("click",checkAnswer);
+
 
 // Save username & score when submit button clicked
 submitBtn.addEventListener("click",saveScore);
