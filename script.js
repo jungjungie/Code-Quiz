@@ -1,9 +1,5 @@
 // Button Variables
 var startBtn = document.querySelector("#startBtn");
-var btnA = document.querySelector("#choiceA");
-var btnB = document.querySelector("#choiceB");
-var btnC = document.querySelector("#choiceC");
-var btnD = document.querySelector("#choiceD");
 var submitBtn = document.querySelector("#submitBtn");
 var mainPgBtn = document.querySelector("#mainPgBtn");
 
@@ -15,7 +11,7 @@ var wrapper4 = document.querySelector("#wrapper4");
 var changingTxt = document.querySelector("#changingTxt");
 var mcBtnArr = document.querySelectorAll(".mcBtns");
 var result = document.querySelector("#correctOrWrong");
-var scoreDiv = document.querySelector("#scoreDiv");
+var scoreboard = document.querySelector("#scoreboard");
 var finalScore = document.querySelector("#finalScore");
 var username = document.querySelector("#username");
 
@@ -120,7 +116,7 @@ function checkAnswer(event) {
     result.style.display = "block";
     setTimeout(function() {
         result.style.display = "none";
-     }, 1500);
+     }, 1000);
 
     // btnA = null;
     // btnB = null;
@@ -150,26 +146,26 @@ function viewScores() {
     wrapper3.style.display = "none";
     wrapper4.style.display = "block";
 
+    scoreboard.innerHTML = "";
+
     // Retrieve from localStorage
-    var showScores = JSON.parse(localStorage.getItem("entry"));
+    scoreTable = JSON.parse(localStorage.getItem("entry"));
+    console.log(scoreTable);
     
     // Loop through showScores array and display on screen
-    if (username.value == null) {
-        return;
-    } 
-    for (var i=0; i < showScores.length; i++) {
-        var player = showScores[i].Name;
-        var playerScore = showScores[i].Scored;
+    // if (scoreboard)
+    for (var i=0; i < scoreTable.length; i++) {
+        var player = scoreTable[i].Name;
+        var playerScore = scoreTable[i].Scored;
 
         var rank = i + 1;
 
         var p = document.createElement("p");
         p.setAttribute("class", "topscores")
-        scoreDiv.appendChild(p);
+        scoreboard.appendChild(p);
         p.textContent = rank + ". " + player + " (Score: " + playerScore + ")";
     }
 
-    username.value == null;
     questionIndex = 0;
 }
 
@@ -192,7 +188,7 @@ function returnHome () {
 
 // Timer stops if it reaches 0 or if no more questions left
 function timeOut() {
-    if (currentTime < 0 || questionIndex == questionArr.length) {
+    if (currentTime <= 0 || questionIndex == questionArr.length) {
         clearInterval(timer);
         
         wrapper2.style.display = "none";
@@ -207,14 +203,9 @@ timeOut();
 startBtn.addEventListener("click",runTimer);
 
 // Adding event to multiple choice buttons
-// for (var i=0; i < mcBtnArr.length; i++) {
-//     mcBtnArr[i].addEventListener("click",checkAnswer);
-// }
-btnA.addEventListener("click",checkAnswer);
-btnB.addEventListener("click",checkAnswer);
-btnC.addEventListener("click",checkAnswer);
-btnD.addEventListener("click",checkAnswer);
-
+for (var i=0; i < mcBtnArr.length; i++) {
+    mcBtnArr[i].addEventListener("click",checkAnswer);
+}
 
 // Save username & score when submit button clicked
 submitBtn.addEventListener("click",saveScore);

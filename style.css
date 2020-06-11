@@ -119,7 +119,7 @@ form {
 #header2 {
     padding: 40px;
 }
-#scoreDiv {
+#scoreboard {
     margin-bottom: 20px;
 }
 .topscores {
@@ -141,7 +141,6 @@ footer {
 .footer {
     padding: 20px;
 }
-
 
 /* For mobile */
 @media (max-width: 450px) {
