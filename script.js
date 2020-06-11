@@ -15,6 +15,7 @@ var result = document.querySelector("#correctOrWrong");
 var timer = null;
 var multipleChoice = document.querySelector("#multipleChoice");
 var changingTxt = document.querySelector("#changingTxt");
+var scoreTable = [];
 
 // Form Variables
 var form = document.querySelector("#form");
@@ -139,6 +140,48 @@ function checkAnswer(event) {
     btnD = null;
 }
 
+// Function to save player's name & score to localStorage
+function saveScore(event) {
+    event.preventDefault();
+
+    form.style.display = "block";
+
+    var nameSubmitted = username.value;
+
+    // Add name & score to scoreTable array & then clear the name entered
+    scoreTable.push({Name: nameSubmitted, Scored: score});
+
+    // Store in localStorage
+    localStorage.setItem("entry", JSON.stringify(scoreTable));
+
+    // Retrieve from localStorage
+    var showScores = JSON.parse(localStorage.getItem("entry"));
+
+    console.log(showScores);
+
+    // Loop through showScores array and display on screen
+    for (var i=0; i < showScores.length; i++) {
+        var player = showScores[i].Name;
+        var playerScore = showScores[i].Scored;
+        console.log(player + playerScore);
+
+        var p = document.createElement("p");
+        wrapper.appendChild(p);
+        p.textContent = player + " scored " + playerScore;
+    }
+}
+
+// Quiz starts to run when Start Quiz Button is clicked
+startBtn.addEventListener("click",runTimer);
+
+// Adding event to multiple choice buttons
+for (var i=0; i < mcBtnArr.length; i++) {
+    mcBtnArr[i].addEventListener("click",checkAnswer);
+}
+
+// Save username & score when submit button clicked
+submitBtn.addEventListener("click",saveScore);
+
 // Hides Start button when quiz starts
 function hideBtn() {
     if (startBtn.style.display === "block") {
@@ -148,29 +191,6 @@ function hideBtn() {
       startBtn.style.display = "none";
     }
 }
-
-// Function to save player's name & score to localStorage
-function saveScore(event) {
-    event.preventDefault();
-
-    var nameSubmitted = username.value;
-
-    localStorage.setItem("Username", nameSubmitted);
-    localStorage.setItem("Score", score);
-}
-
-// Quiz starts to run when Start Quiz Button is clicked
-startBtn.addEventListener("click",runTimer)
-
-// Adding event to multiple choice buttons
-for (var i=0; i < mcBtnArr.length; i++) {
-    mcBtnArr[i].addEventListener("click",checkAnswer)
-}
-
-// Save username & score when submit button clicked
-submitBtn.addEventListener("click",saveScore)
-
-
 
 
 

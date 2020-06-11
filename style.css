@@ -122,6 +122,14 @@ footer {
 }
 
 
+/* For High Scores Page */
+.topscores {
+    background: #ececec;
+    margin-bottom: 4px;
+    padding: 4px;
+}
+
+
 /* For mobile */
 @media (max-width: 450px) {
     .wrapper {
