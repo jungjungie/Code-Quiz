@@ -123,10 +123,19 @@ footer {
 
 
 /* For High Scores Page */
+#header2 {
+    margin-bottom: 20px;
+}
+
+#scoreDiv {
+    margin-bottom: 20px;
+}
+
 .topscores {
     background: #ececec;
     margin-bottom: 4px;
-    padding: 4px;
+    padding: 4px 10px;
+    text-align: left;
 }
 
 

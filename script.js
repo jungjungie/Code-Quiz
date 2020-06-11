@@ -5,6 +5,7 @@ var btnB = document.querySelector("#choiceB");
 var btnC = document.querySelector("#choiceC");
 var btnD = document.querySelector("#choiceD");
 var submitBtn = document.querySelector("#submitBtn");
+var mainPgBtn = document.querySelector("#mainPgBtn");
 
 // Variables
 var currentTime = 75;
@@ -16,6 +17,8 @@ var timer = null;
 var multipleChoice = document.querySelector("#multipleChoice");
 var changingTxt = document.querySelector("#changingTxt");
 var scoreTable = [];
+var header2 = document.querySelector("#header2");
+var scoreDiv = document.querySelector("#scoreDiv");
 
 // Form Variables
 var form = document.querySelector("#form");
@@ -144,8 +147,6 @@ function checkAnswer(event) {
 function saveScore(event) {
     event.preventDefault();
 
-    form.style.display = "block";
-
     var nameSubmitted = username.value;
 
     // Add name & score to scoreTable array & then clear the name entered
@@ -154,22 +155,35 @@ function saveScore(event) {
     // Store in localStorage
     localStorage.setItem("entry", JSON.stringify(scoreTable));
 
+    viewScores();
+}
+
+function viewScores() {
+
+    form.style.display = "none";
+
     // Retrieve from localStorage
     var showScores = JSON.parse(localStorage.getItem("entry"));
-
-    console.log(showScores);
-
+    
     // Loop through showScores array and display on screen
     for (var i=0; i < showScores.length; i++) {
         var player = showScores[i].Name;
         var playerScore = showScores[i].Scored;
-        console.log(player + playerScore);
+
+        var rank = i + 1;
 
         var p = document.createElement("p");
-        wrapper.appendChild(p);
-        p.textContent = player + " scored " + playerScore;
+        p.setAttribute("class", "topscores")
+        scoreDiv.appendChild(p);
+        p.textContent = rank + ". " + player + " (Score: " + playerScore + ")";
     }
+
+    // Make visible
+    header2.style.display = "block";
+    scoreDiv.style.display = "block";
+    mainPgBtn.style.display = "block";
 }
+
 
 // Quiz starts to run when Start Quiz Button is clicked
 startBtn.addEventListener("click",runTimer);
