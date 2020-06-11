@@ -7,30 +7,24 @@ var btnD = document.querySelector("#choiceD");
 var submitBtn = document.querySelector("#submitBtn");
 var mainPgBtn = document.querySelector("#mainPgBtn");
 
-// Variables
-var currentTime = 75;
-var questionIndex = 0;
-var score = 0;
-var mcBtnArr = document.querySelectorAll(".mcBtns");
-var result = document.querySelector("#correctOrWrong");
-var timer = null;
-var multipleChoice = document.querySelector("#multipleChoice");
-var instructions = document.querySelector("#instructions");
-var changingTxt = document.querySelector("#changingTxt");
-var scoreTable = [];
-var header1 = document.querySelector("#header1");
-var header2 = document.querySelector("#header2");
-var scoreDiv = document.querySelector("#scoreDiv");
-
-// Form Variables
-var form = document.querySelector("#form");
+// Other HTML Variables
 var wrapper1 = document.querySelector("#wrapper1");
 var wrapper2 = document.querySelector("#wrapper2");
 var wrapper3 = document.querySelector("#wrapper3");
 var wrapper4 = document.querySelector("#wrapper4");
+var changingTxt = document.querySelector("#changingTxt");
+var mcBtnArr = document.querySelectorAll(".mcBtns");
+var result = document.querySelector("#correctOrWrong");
+var scoreDiv = document.querySelector("#scoreDiv");
 var finalScore = document.querySelector("#finalScore");
 var username = document.querySelector("#username");
 
+// New Variables
+var currentTime = 75;
+var timer = null;
+var questionIndex = 0;
+var scoreTable = [];
+score = 0;
 
 // Array of Q&A
 var questionArr = [
@@ -121,14 +115,7 @@ function checkAnswer(event) {
         populateQ();
     }
 
-    // Timer stops if it reaches 0 or if no more questions left
-    if (currentTime < 0 || questionIndex == questionArr.length - 1) {
-        clearInterval(timer);
-
-        wrapper2.style.display = "none";
-        wrapper3.style.display = "block";
-        finalScore.textContent = score;
-    }
+    timeOut();
 
     // Shows commentary
     result.style.display = "block";
@@ -161,6 +148,7 @@ function saveScore(event) {
 function viewScores() {
 
     wrapper1.style.display = "none";
+    wrapper2.style.display = "none";
     wrapper3.style.display = "none";
     wrapper4.style.display = "block";
 
@@ -168,6 +156,9 @@ function viewScores() {
     var showScores = JSON.parse(localStorage.getItem("entry"));
     
     // Loop through showScores array and display on screen
+    if (username.value == null) {
+        return;
+    } 
     for (var i=0; i < showScores.length; i++) {
         var player = showScores[i].Name;
         var playerScore = showScores[i].Scored;
@@ -179,6 +170,9 @@ function viewScores() {
         scoreDiv.appendChild(p);
         p.textContent = rank + ". " + player + " (Score: " + playerScore + ")";
     }
+
+    username.value == null;
+    questionIndex = 0;
 }
 
 function returnHome () {
@@ -191,7 +185,27 @@ function returnHome () {
       else {
         startBtn.style.display = "block";
       }
+
+    currentTime = 75;
+    score = 0;
+    document.querySelector("#countdown").textContent = currentTime;
+    document.querySelector("#score").textContent = score; 
+
+    
 }
+
+// Timer stops if it reaches 0 or if no more questions left
+function timeOut() {
+    if (currentTime < 0 || questionIndex == questionArr.length) {
+        clearInterval(timer);
+        
+        wrapper2.style.display = "none";
+        wrapper3.style.display = "block";
+        finalScore.textContent = score;
+    }
+}
+
+timeOut();
 
 // Quiz starts to run when Start Quiz Button is clicked
 startBtn.addEventListener("click",runTimer);
