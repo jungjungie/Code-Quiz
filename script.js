@@ -9,7 +9,7 @@ var mainPgBtn = document.querySelector("#mainPgBtn");
 
 // Variables
 var currentTime = 75;
-var questionIndex = -1;
+var questionIndex = 0;
 var score = 0;
 var mcBtnArr = document.querySelectorAll(".mcBtns");
 var result = document.querySelector("#correctOrWrong");
@@ -66,6 +66,10 @@ var questionArr = [
     }
 ]
 
+wrapper2.style.display = "none";
+wrapper3.style.display = "none";
+wrapper4.style.display = "none";
+
 // Function to start countdown
 function runTimer() {
 
@@ -85,8 +89,7 @@ function runTimer() {
 // Function to populate questions & multiple choice
 function populateQ() {
     if (currentTime > 0 && questionIndex < questionArr.length) {
-        questionIndex++;
-    
+        
         // Populates question
         changingTxt.textContent = questionArr[questionIndex].q;
             
@@ -94,6 +97,8 @@ function populateQ() {
         for (var i=0; i < mcBtnArr.length; i++) {
             mcBtnArr[i].textContent = questionArr[questionIndex].choices[i];
         } 
+
+        questionIndex++;
     } 
 }
 
@@ -120,15 +125,9 @@ function checkAnswer(event) {
     if (currentTime < 0 || questionIndex == questionArr.length - 1) {
         clearInterval(timer);
 
-        changingTxt.style.display = "none";
-        multipleChoice.style.display = "none";
-        wrapper1.style.display = "none";
-
-        setTimeout(function() {
-            wrapper1.style.display = "block";
-            form.style.display = "block";
-            finalScore.textContent = score;
-         }, 1500);
+        wrapper2.style.display = "none";
+        wrapper3.style.display = "block";
+        finalScore.textContent = score;
     }
 
     // Shows commentary
@@ -138,10 +137,10 @@ function checkAnswer(event) {
         result.style.display = "none";
      }, 1500);
 
-    btnA = null;
-    btnB = null;
-    btnC = null;
-    btnD = null;
+    // btnA = null;
+    // btnB = null;
+    // btnC = null;
+    // btnD = null;
 }
 
 // Function to save player's name & score to localStorage
@@ -161,7 +160,9 @@ function saveScore(event) {
 
 function viewScores() {
 
-    form.style.display = "none";
+    wrapper1.style.display = "none";
+    wrapper3.style.display = "none";
+    wrapper4.style.display = "block";
 
     // Retrieve from localStorage
     var showScores = JSON.parse(localStorage.getItem("entry"));
@@ -178,22 +179,11 @@ function viewScores() {
         scoreDiv.appendChild(p);
         p.textContent = rank + ". " + player + " (Score: " + playerScore + ")";
     }
-
-    // Make visible
-    header2.style.display = "block";
-    scoreDiv.style.display = "block";
-    mainPgBtn.style.display = "block";
 }
 
 function returnHome () {
-    // Hide
-    header2.style.display = "none";
-    scoreDiv.style.display = "none";
-    mainPgBtn.style.display = "none";
-
-    // Show
-    document.querySelector("h1").style.display = "block";
-    instructions.display.style = "block";
+    wrapper4.style.display = "none";
+    wrapper1.style.display = "block";
 
     if (startBtn.style.display === "none") {
         startBtn.style.display = "block";

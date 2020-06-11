@@ -15,23 +15,26 @@
     <header>
         <!-- Navbar: Link to High Scores & Timer -->
         <nav>
-            <a href="#">View High Scores</a>
-            <p>Current Score: <span id="score">0</span></p>
-            <p>Time Remaining:  <span id="countdown">75</span></p>
+            
+            <a onclick="viewScores()" href="#">View High Scores</a>
+            <p>Current Score: <strong><span id="score">0</span></strong></p>
+            <p>Time Remaining:  <strong><span id="countdown">75</span></strong></p>
         </nav>
     </header>
     <main>
         <!-- Homepage -->
-        <section id="wrapper1" class="show">
-            <h1 id="header1">Coding Quiz Challenge</h1>
+        <section id="wrapper1">
+            <div class="container">
+                <h1 id="header1">Coding Quiz Challenge</h1>
 
-            <p id="directions">Try to answer the following questions around JavaScript within the time allotted. Keep in mind that incorrect answers will reduce your time remaining by 10 seconds!</p>
+                <p id="directions">Try to answer the following questions around JavaScript within the time allotted. Keep in mind that incorrect answers will reduce your time remaining by 10 seconds!</p>
 
-            <button id="startBtn" onclick="hideBtn()">Start Quiz</button>
+                <button id="startBtn" onclick="hideBtn()">Start Quiz</button>
+            </div>
         </section>
 
         <!-- Q&A Pages -->
-        <section id="wrapper2" class="hide">
+        <section id="wrapper2">
             <div class="container">
                 <p id="changingTxt"></p>
 
@@ -43,27 +46,32 @@
                 </ol>
             </div>
         </section>
-        <p id="correctOrWrong" class="hide"></p>
 
         <!-- Form to enter user name -->
-        <section id="wrapper3" class="hide">
-            <form id="form">
-                <h2>You're done!</h2>
-                <p>Your final score is </p>
-                <p id="finalScore"></p>
-                <label for="username">
-                    Enter name:
-                </label>
-                <input id="username" type="text">
-                <button id="submitBtn">Submit</button>
-            </form>
+        <section id="wrapper3">
+            <div class="container">
+                <form id="form">
+                    <h2>You're done!</h2>
+                    <p>Your final score is </p>
+                    <p id="finalScore"></p>
+                    <label for="username">
+                        Enter name:
+                    </label>
+                    <input id="username" type="text">
+                    <button id="submitBtn">Submit</button>
+                </form>
+            </div>
         </section>
             
+        <p id="correctOrWrong"></p>
+
         <!-- High Scores Page -->
-        <section id="wrapper4" class="hide">
-            <h2 id="header2" class="hide">High Scores</h2>
-            <div id="scoreDiv" class="hide"></div>
-            <button id="mainPgBtn" class="btns hide">Main Page</button>
+        <section id="wrapper4">
+            <div class="container">
+                <h2 id="header2">High Scores</h2>
+                <div id="scoreDiv"></div>
+                <button id="mainPgBtn" class="btns">Main Page</button>
+            </div>
         </section>
     </main>
     <footer>
