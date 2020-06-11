@@ -15,14 +15,19 @@ var mcBtnArr = document.querySelectorAll(".mcBtns");
 var result = document.querySelector("#correctOrWrong");
 var timer = null;
 var multipleChoice = document.querySelector("#multipleChoice");
+var instructions = document.querySelector("#instructions");
 var changingTxt = document.querySelector("#changingTxt");
 var scoreTable = [];
+var header1 = document.querySelector("#header1");
 var header2 = document.querySelector("#header2");
 var scoreDiv = document.querySelector("#scoreDiv");
 
 // Form Variables
 var form = document.querySelector("#form");
-var wrapper = document.querySelector(".wrapper");
+var wrapper1 = document.querySelector("#wrapper1");
+var wrapper2 = document.querySelector("#wrapper2");
+var wrapper3 = document.querySelector("#wrapper3");
+var wrapper4 = document.querySelector("#wrapper4");
 var finalScore = document.querySelector("#finalScore");
 var username = document.querySelector("#username");
 
@@ -71,13 +76,9 @@ function runTimer() {
         }, 1000);
     }
 
-    // h1 disappears
-    document.querySelector("h1").style.display = "none";
-
-    // Shows ol & li for multiple choice
-    multipleChoice.style.display = "block";
+    wrapper1.style.display = "none";
+    wrapper2.style.display = "block";
     
-    // Runs function to populate question
     populateQ();
 }
 
@@ -121,10 +122,10 @@ function checkAnswer(event) {
 
         changingTxt.style.display = "none";
         multipleChoice.style.display = "none";
-        wrapper.style.display = "none";
+        wrapper1.style.display = "none";
 
         setTimeout(function() {
-            wrapper.style.display = "block";
+            wrapper1.style.display = "block";
             form.style.display = "block";
             finalScore.textContent = score;
          }, 1500);
@@ -184,6 +185,23 @@ function viewScores() {
     mainPgBtn.style.display = "block";
 }
 
+function returnHome () {
+    // Hide
+    header2.style.display = "none";
+    scoreDiv.style.display = "none";
+    mainPgBtn.style.display = "none";
+
+    // Show
+    document.querySelector("h1").style.display = "block";
+    instructions.display.style = "block";
+
+    if (startBtn.style.display === "none") {
+        startBtn.style.display = "block";
+      }  
+      else {
+        startBtn.style.display = "block";
+      }
+}
 
 // Quiz starts to run when Start Quiz Button is clicked
 startBtn.addEventListener("click",runTimer);
@@ -206,7 +224,4 @@ function hideBtn() {
     }
 }
 
-
-
-// Add more to Q&A queue
-// When game is over, allow user to save initials and score
+mainPgBtn.addEventListener("click", returnHome)

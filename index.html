@@ -21,20 +21,33 @@
         </nav>
     </header>
     <main>
-        <div class="wrapper">
-
+        <!-- Homepage -->
+        <section id="wrapper1" class="show">
             <h1 id="header1">Coding Quiz Challenge</h1>
 
-            <p id="changingTxt">Try to answer the following questions around JavaScript within the time allotted. Keep in mind that incorrect answers will reduce your time remaining by 10 seconds!</p>
+            <p id="directions">Try to answer the following questions around JavaScript within the time allotted. Keep in mind that incorrect answers will reduce your time remaining by 10 seconds!</p>
 
-            <ol id="multipleChoice" class="hide">
-                <li><button id="choiceA" class="mcBtns"></button></li>
-                <li><button id="choiceB" class="mcBtns"></button></li>
-                <li><button id="choiceC" class="mcBtns"></button></li>
-                <li><button id="choiceD" class="mcBtns"></button></li>
-            </ol>
+            <button id="startBtn" onclick="hideBtn()">Start Quiz</button>
+        </section>
 
-            <form id="form" class="hide">
+        <!-- Q&A Pages -->
+        <section id="wrapper2" class="hide">
+            <div class="container">
+                <p id="changingTxt"></p>
+
+                <ol id="multipleChoice">
+                    <li><button id="choiceA" class="mcBtns"></button></li>
+                    <li><button id="choiceB" class="mcBtns"></button></li>
+                    <li><button id="choiceC" class="mcBtns"></button></li>
+                    <li><button id="choiceD" class="mcBtns"></button></li>
+                </ol>
+            </div>
+        </section>
+        <p id="correctOrWrong" class="hide"></p>
+
+        <!-- Form to enter user name -->
+        <section id="wrapper3" class="hide">
+            <form id="form">
                 <h2>You're done!</h2>
                 <p>Your final score is </p>
                 <p id="finalScore"></p>
@@ -44,15 +57,14 @@
                 <input id="username" type="text">
                 <button id="submitBtn">Submit</button>
             </form>
-
-            <button id="startBtn" onclick="hideBtn()">Start Quiz</button>
-
+        </section>
+            
+        <!-- High Scores Page -->
+        <section id="wrapper4" class="hide">
             <h2 id="header2" class="hide">High Scores</h2>
             <div id="scoreDiv" class="hide"></div>
             <button id="mainPgBtn" class="btns hide">Main Page</button>
-        </div>
-
-        <p id="correctOrWrong" class="hide"></p>
+        </section>
     </main>
     <footer>
         <p class="footer">Created by Esther Min</p>

@@ -21,7 +21,14 @@ a {
     text-decoration: none;
 }
 
-.wrapper {
+/* General */
+.hide {
+    display: none;
+}
+.show {
+    display: block;
+}
+#wrapper1, #wrapper2, #wrapper3, #wrapper4 {
     background: white;
     width: 70%;
     min-height: 400px;
@@ -35,10 +42,42 @@ a {
     justify-content: space-evenly;
 }
 
-.hide {
-    display: none;
+/* Q&A Page */
+.container {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+#changingTxt {
+    font-size: 20px;
+    font-weight: 500;
+    padding: 20px;
+}
+#multipleChoice {
+    margin-left: 40px;
+    text-align: left;
+}
+.mcBtns, .btns {
+    background: #5b3b8c;
+    color: white;
+    max-width: 500px;
+    line-height: 2.3em;
+    padding: 0px 15px;
+    margin: 0 auto;
+    margin-bottom: 5px;
+    border-radius: 5px;
+    border: none;
+    font-size: 16px;
+}
+#correctOrWrong {
+    text-align: center;
+    color: white;
+    font-size: 3em;
+    margin-top: 20px;
 }
 
+/* Form Page */
 form {
     padding-top: 100px;
 }
@@ -72,31 +111,7 @@ form {
     border: none;
 }
 
-#correctOrWrong {
-    text-align: center;
-    color: white;
-    font-size: 3em;
-    margin-top: 20px;
-}
 
-#multipleChoice {
-    margin: 0 auto;
-    text-align: left;
-}
-
-.mcBtns, .btns {
-    background: #5b3b8c;
-    color: white;
-    max-width: 500px;
-    line-height: 2.3em;
-    text-align: left;
-    padding: 0px 15px;
-    margin: 0 auto;
-    margin-bottom: 5px;
-    border-radius: 5px;
-    border: none;
-    font-size: 16px;
-}
 
 #startBtn {
     background: #5b3b8c;
@@ -141,7 +156,7 @@ footer {
 
 /* For mobile */
 @media (max-width: 450px) {
-    .wrapper {
+    .wrapper1 {
         width: 90vw;
         align-content: center;
         margin-top: 20px;
