@@ -38,6 +38,9 @@ a {
     text-align: center; 
     padding: 20px;
 }
+#startBtn:hover, .mcBtns:hover, #submitBtn:hover, #mainPgBtn:hover, #clearScoreBtn:hover {
+    background: #a86cc1;
+}
 
 
 /* Main Page */

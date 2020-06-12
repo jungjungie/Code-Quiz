@@ -2,6 +2,7 @@
 var startBtn = document.querySelector("#startBtn");
 var submitBtn = document.querySelector("#submitBtn");
 var mainPgBtn = document.querySelector("#mainPgBtn");
+var clearScoreBtn = document.querySelector("#clearScoreBtn");
 
 // Other HTML Variables
 var wrapper1 = document.querySelector("#wrapper1");
@@ -20,7 +21,7 @@ var currentTime = 75;
 var timer = null;
 var questionIndex = 0;
 var scoreTable = [];
-score = 0;
+var score = 0;
 
 // Array of Q&A
 var questionArr = [
@@ -88,12 +89,12 @@ function populateQ() {
             mcBtnArr[i].textContent = questionArr[questionIndex].choices[i];
         } 
     } 
+    timeOut();
 }
 
 // Function to check answer & determine next steps
 function checkAnswer(event) {
 
-    console.log(event);
     // If answer is correct, add to score & go to next Q&A
     if (event.target.textContent == questionArr[questionIndex].answer) {
         score += 10;
@@ -109,19 +110,13 @@ function checkAnswer(event) {
 
     questionIndex++;
     populateQ();
-
     timeOut();
 
-    // Show commentary (right vs. wrong) for 1.5 seconds
+    // Show commentary (right vs. wrong) for 1 second
     result.style.display = "block";
     setTimeout(function() {
         result.style.display = "none";
      }, 1000);
-
-    // btnA = null;
-    // btnB = null;
-    // btnC = null;
-    // btnD = null;
 }
 
 // Function to save player's name & score to localStorage
@@ -130,10 +125,11 @@ function saveScore(event) {
 
     var nameSubmitted = username.value;
 
-    // Add name & score to scoreTable array & then clear the name entered
+    // Add name & score to scoreTable array
+    scoreTable = JSON.parse(localStorage.getItem("entry")) || [];
     scoreTable.push({Name: nameSubmitted, Scored: score});
 
-    // Store in localStorage
+    // Store array in localStorage
     localStorage.setItem("entry", JSON.stringify(scoreTable));
 
     viewScores();
@@ -150,10 +146,8 @@ function viewScores() {
 
     // Retrieve from localStorage
     scoreTable = JSON.parse(localStorage.getItem("entry"));
-    console.log(scoreTable);
     
     // Loop through showScores array and display on screen
-    // if (scoreboard)
     for (var i=0; i < scoreTable.length; i++) {
         var player = scoreTable[i].Name;
         var playerScore = scoreTable[i].Scored;
@@ -167,8 +161,10 @@ function viewScores() {
     }
 
     questionIndex = 0;
+     clearInterval(timer);
 }
 
+// Function to go back to main page
 function returnHome () {
     wrapper4.style.display = "none";
     wrapper1.style.display = "block";
@@ -194,21 +190,25 @@ function timeOut() {
         wrapper2.style.display = "none";
         wrapper3.style.display = "block";
         finalScore.textContent = score;
+        return;
     }
 }
 
 timeOut();
 
-// Quiz starts to run when Start Quiz Button is clicked
+// Event listeners
 startBtn.addEventListener("click",runTimer);
+mainPgBtn.addEventListener("click", returnHome)
+submitBtn.addEventListener("click",saveScore);
+clearScoreBtn.addEventListener("click", function() {
+    localStorage.clear("entry");
+    scoreboard.innerHTML = "";
+})
 
-// Adding event to multiple choice buttons
+// Event listeners for multiple choice buttons
 for (var i=0; i < mcBtnArr.length; i++) {
     mcBtnArr[i].addEventListener("click",checkAnswer);
 }
-
-// Save username & score when submit button clicked
-submitBtn.addEventListener("click",saveScore);
 
 // Hides Start button when quiz starts
 function hideBtn() {
@@ -219,5 +219,3 @@ function hideBtn() {
       startBtn.style.display = "none";
     }
 }
-
-mainPgBtn.addEventListener("click", returnHome)
