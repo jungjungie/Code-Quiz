@@ -17,7 +17,7 @@ var finalScore = document.querySelector("#finalScore");
 var username = document.querySelector("#username");
 
 // New Variables
-var currentTime = 75;
+var currentTime = 76;
 var timer = null;
 var questionIndex = 0;
 var scoreTable = [];
@@ -83,13 +83,9 @@ wrapper4.style.display = "none";
 
 // Function to start countdown
 function runTimer() {
-
-    if (timer == null) {
-        timer = setInterval(function() {
-            currentTime--; 
-            document.querySelector("#countdown").textContent = currentTime;
-        }, 1000);
-    }
+    timer = setInterval(function() {
+        timeOut();
+    }, 1000);
 
     wrapper1.style.display = "none";
     wrapper2.style.display = "block";
@@ -109,7 +105,6 @@ function populateQ() {
             mcBtnArr[i].textContent = questionArr[questionIndex].choices[i];
         } 
     } 
-    timeOut();
 }
 
 // Function to check answer & determine next steps
@@ -130,7 +125,6 @@ function checkAnswer(event) {
 
     questionIndex++;
     populateQ();
-    timeOut();
 
     // Show commentary (right vs. wrong) for 1 second
     result.style.display = "block";
@@ -156,12 +150,10 @@ function saveScore(event) {
 }
 
 function viewScores() {
-
     wrapper1.style.display = "none";
     wrapper2.style.display = "none";
     wrapper3.style.display = "none";
     wrapper4.style.display = "block";
-
     scoreboard.innerHTML = "";
 
     // Retrieve from localStorage
@@ -185,7 +177,7 @@ function viewScores() {
     }
 
     questionIndex = 0;
-     clearInterval(timer);
+    clearInterval(timer);
 }
 
 // Function to go back to main page
@@ -210,11 +202,13 @@ function returnHome () {
 function timeOut() {
     if (currentTime <= 0 || questionIndex == questionArr.length) {
         clearInterval(timer);
-        
         wrapper2.style.display = "none";
         wrapper3.style.display = "block";
         finalScore.textContent = score;
         return;
+    } else {
+        currentTime--; 
+        document.querySelector("#countdown").textContent = currentTime;
     }
 }
 
