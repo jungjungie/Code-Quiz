@@ -8,30 +8,26 @@
 <br>
 <br>
 
-## Project Description:
+## Description:
 
-For this exercise, I was tasked with creating a multiple-choice quiz on JavaScript. The quiz is built with HTML and CSS and dynamically powered using JavaScript.
+This application is a timed multiple-choice quiz on JavaScript fundamentals. The quiz is built with HTML and CSS and dynamically powered using JavaScript.
 
 Once the quiz is over, the user can save his/her score and the data gets stored in localStorage and displayed on a "View High Scores" page.
+<br>
+<br>
 
-Quiz features:
-- Timer that counts down from 75 seconds
+**Quiz Features:**
+- Timer counts down from 75 seconds
 - Correct answers increase the score by 10 points
 - Incorrect answers decrease the timer by 10 seconds
 - Quiz is over when time is up or no more questions left
 - User can enter his/her name and save score
 - User can view all high scores saved on localStorage
-- Application is responsive to multiple screen sizes
+- User can clear the scores stored
+- Application is responsive to screen sizes
 
 
 
 ***
-## Screenshots:
-<br>
-<br>
-
-**Original Demo:**<br>
-![gif of original demo]()
-<br>
-
-**Finished Demo:**<br>
+## Demo:
+![gif demo of app](images/codingquiz.gif)

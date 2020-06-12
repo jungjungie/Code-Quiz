@@ -27,8 +27,8 @@ var score = 0;
 var questionArr = [
     {
         q: "Which one of these is not a JavaScript data type?",
-        choices: ["boolean", "var", "string", "undefined"],
-        answer: "var"
+        choices: ["boolean", "loop", "string", "null"],
+        answer: "loop"
     },
     {
         q: "What does 'DOM' stand for?",
@@ -36,14 +36,14 @@ var questionArr = [
         answer: "Document Object Model"
     },
     {
-        q: "What does 'this' keyword refer to in JavaScript?",
+        q: "What does the keyword 'this' refer to?",
         choices: ["The current variable", "The current website", "The current function", "The current object"],
         answer: "The current object"
     },
     {
-        q: "Which of these does not mean the same thing as the others?",
-        choices: ["count + 1", "count = count + 1", "count += 1", "count++"],
-        answer: "count + 1"
+        q: "Which of these does not equal the others?",
+        choices: ["+1count", "count + 1", "count += 1", "count++"],
+        answer: "+1count"
     },
     {
         q: "__________ is used to select an element and assign it to a variable.",
@@ -51,9 +51,29 @@ var questionArr = [
         answer: ".querySelector()"
     },
     {
+        q: "What type of programming language is JavaScript?",
+        choices: ["Front-end", "Back-end", "Full-stack", "None of the above"],
+        answer: "Full-stack"
+    },
+    {
         q: "If you have an array of letters A through D, which letter is at index 1?",
         choices: ["A", "B", "C", "D"],
         answer: "B"
+    },
+    {
+        q: "Which of these has the correct syntax to display 'Hello World' in an alert?",
+        choices: ["alert('Hello World')", "prompt('Hello World')", "alert(Hello World)", "prompt(Hello World)"],
+        answer: "alert('Hello World')"
+    },
+    {
+        q: "Which of the following is true about JavaScript variables?",
+        choices: ["Variable values cannot be overridden", "Variables only exist in the global scope", "Variable names are case sensitive", "None of the above"],
+        answer: "Variable names are case sensitive"
+    },
+    {
+        q: "When you console.log() something, where does it show up?",
+        choices: ["Webpage", "Console", "Both of the above", "None of the above"],
+        answer: "Console"
     }
 ]
 
@@ -148,16 +168,20 @@ function viewScores() {
     scoreTable = JSON.parse(localStorage.getItem("entry"));
     
     // Loop through showScores array and display on screen
-    for (var i=0; i < scoreTable.length; i++) {
-        var player = scoreTable[i].Name;
-        var playerScore = scoreTable[i].Scored;
+    if (scoreTable == null) {
+        return;
+    } else {
+        for (var i=0; i < scoreTable.length; i++) {
+            var player = scoreTable[i].Name;
+            var playerScore = scoreTable[i].Scored;
 
-        var rank = i + 1;
+            var rank = i + 1;
 
-        var p = document.createElement("p");
-        p.setAttribute("class", "topscores")
-        scoreboard.appendChild(p);
-        p.textContent = rank + ". " + player + " (Score: " + playerScore + ")";
+            var p = document.createElement("p");
+            p.setAttribute("class", "topscores")
+            scoreboard.appendChild(p);
+            p.textContent = rank + ". " + player + " (Score: " + playerScore + ")";
+        }
     }
 
     questionIndex = 0;
